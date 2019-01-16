@@ -7,7 +7,8 @@
         <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
         <link rel="stylesheet" type="text/css" href="style.css">
-        
+        <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+        <script src="template.js"></script>
     </head>
 
     <body class="bg-light">
@@ -16,25 +17,24 @@
             <h4>Enter your custom template here:</h4>
         
             <br><br>
-            <form class="entry">
-                <div class="form-row">
-                    <div class="col.auto">
-                        <input type="text" class="form-control" placeholder="Exercise name">
-                    </div>
-                    <div class="col.auto">
-                        <input type="number" class="form-control" placeholder="Set">
-                    </div>
-                    <div class="col.auto">
-                        <input type="number" class="form-control" placeholder="Rep">
+            <form action="" method="post">
+                <div id="InputsWrapper">
+                    <div><input type="text" name="mytext[]" id="field_1" placeholder="Exercise name">
+                        <input type="number" placeholder="Set"/>
+                        <input type="number" placeholder="Rep"/>
+                        <a href="#" class="removeclass"> Remove</a>
                     </div>
                 </div>
+                <div id="AddMoreFileId">
+                    <a href="#" id="AddMoreFileBox" class="btn btn-primary">Add Exercise</a><br><br>
+                </div>
+                <div id="lineBreak"></div>
+                <input type="submit" id="submit" class="btn btn-primary" name="send" value="Submit">
             </form>
-            <br>
-            <input type="button" onclick="addEntry()" class="btn btn-primary btn-circle" value="&#xf067"></input>
         </div>
         
     
     </body>
-    <script src="script.js"></script>
-    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    
+    
 </html>
