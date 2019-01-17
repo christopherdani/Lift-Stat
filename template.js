@@ -1,5 +1,5 @@
 // Credit to Treps from https://stackoverflow.com/questions/9173182/add-remove-input-field-dynamically-with-jquery
-// His profile is at https://stackoverflow.com/users/2156296/treps 
+// Profile is at https://stackoverflow.com/users/2156296/treps 
 $(document).ready(function() {
 
     var MaxInputs       = 99; //maximum extra input boxes allowed
@@ -15,7 +15,7 @@ $(document).ready(function() {
             if(x <= MaxInputs) {
                 FieldCount++; //text box added ncrement
                 //add input box
-                $(InputsWrapper).append('<div><input type="text" name="mytext[]" id="field_'+ FieldCount +'" placeholder="Exercise name"/>' + 
+                $(InputsWrapper).append('<div><input type="text" id="field_'+ FieldCount +'" placeholder="Exercise name"/>' + 
                     '<input type="number" placeholder="Set"/>' +
                     '<input type="number" placeholder="Rep"/>' +
                     '<a href="#" class="removeclass"> Remove</a></div>');
@@ -23,9 +23,7 @@ $(document).ready(function() {
                 
                 $("#AddMoreFileId").show();
                 
-                $('AddMoreFileBox').html("Add field");
-                
-                // Delete the "add"-link if there is 3 fields.
+                // Limit
                 if(x == 100) {
                     $("#AddMoreFileId").hide();
                      $("#lineBreak").html("<br>");
