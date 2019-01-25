@@ -1,4 +1,9 @@
-const url = require('url');
+
+
+
+
+
+/*const url = require('url');
 const fs = require('fs');
 
 function renderHTML(path, res){
@@ -16,11 +21,10 @@ function renderHTML(path, res){
 
 module.exports = {
     handleReq: (req, res) => {
-        console.log("test");
         res.writeHead(200, {'Content-Type' : 'text/html'});
         const path = url.parse(req.url).pathname;
         switch (path) {
-            case '/':
+            case '/': 
                 renderHTML('./index.html', res);
                 break;
             case '/template':
@@ -36,3 +40,4 @@ module.exports = {
         }
     }
 }
+*/

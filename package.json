@@ -1,0 +1,26 @@
+{
+  "name": "lift-stat",
+  "version": "1.0.0",
+  "description": "A web tracker for lifting weights",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/christopherdani/Lift-Stat.git"
+  },
+  "author": "Christopher Dani",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/christopherdani/Lift-Stat/issues"
+  },
+  "homepage": "https://github.com/christopherdani/Lift-Stat#readme",
+  "devDependencies": {
+    "nodemon": "^1.18.9"
+  },
+  "dependencies": {
+    "express": "^4.16.4"
+  }
+}
