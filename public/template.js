@@ -1,11 +1,13 @@
+
 // Credit to Treps from https://stackoverflow.com/questions/9173182/add-remove-input-field-dynamically-with-jquery
 // Profile is at https://stackoverflow.com/users/2156296/treps 
 $(document).ready(function() {
+
     var MaxInputs       = 99; //maximum extra input boxes allowed
     var InputsWrapper   = $("#InputsWrapper"); //Input boxes wrapper ID
     var AddButton       = $("#AddMoreFileBox"); //Add button ID
     
-    var x = InputsWrapper.length; //Initial count
+    var x = InputsWrapper.length; //initlal text box count
     var FieldCount=1; //to keep track of text box added
     
     //on add input button click
@@ -15,35 +17,37 @@ $(document).ready(function() {
             FieldCount++; //text box added ncrement
             //add input box
             $(InputsWrapper).append('<div><input type="text" id="field_'+ FieldCount +'" placeholder="Exercise name"/>' + 
-                '<input type="number" placeholder="Set"/>' +
-                '<input type="number" placeholder="Rep"/>' +
-                '<a href="#" class="removeclass"> Remove</a></div>');
+            '<input type="number" placeholder="Set"/>' +
+            '<input type="number" placeholder="Rep"/>' +
+            '<a href="#" class="removeclass"> Remove</a></div>');
             x++; //text box increment
-            
+
             $("#AddMoreFileId").show();
-            
-            // Limit
-            if(x == 100) {
+
+            $('AddMoreFileBox').html("Add field");
+
+            // Delete the "add"-link if there is 3 fields.
+            if(x == 99) {
                 $("#AddMoreFileId").hide();
-                    $("#lineBreak").html("<br>");
+                $("#lineBreak").html("<br>");
             }
         }
         return false;
     });
     
     $("body").on("click",".removeclass", function(e){ //user click on remove text
-            if( x > 1 ) {
-                    $(this).parent('div').remove(); //remove text box
-                    x--; //decrement textbox
-                
-                    $("#AddMoreFileId").show();
-                
-                    $("#lineBreak").html("");
-                
-                    // Adds the "add" link again when a field is removed.
-                    $('AddMoreFileBox').html("Add field");
-            }
+        if( x > 1 ) {
+            $(this).parent('div').remove(); //remove text box
+            x--; //decrement textbox
+
+            $("#AddMoreFileId").show();
+
+            $("#lineBreak").html("");
+
+            // Adds the "add" link again when a field is removed.
+            $('AddMoreFileBox').html("Add field");
+        }
         return false;
     }) 
     
-});
+    });
