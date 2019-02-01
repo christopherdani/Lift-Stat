@@ -1,10 +1,13 @@
 
-//const routes = require('./routes');
 const path = require('path');
 const express = require('express');
 const bodyParser = require('body-parser');
-
 const server = express();
+
+// import routes here
+const trainingRoutes = require('./routes/train');
+const configureRoutes = require('./routes/configure');
+const notFoundRoutes = require('./routes/notfound');
 
 // body parsing
 server.use(bodyParser.urlencoded({extended: true}));
@@ -12,17 +15,11 @@ server.use(bodyParser.urlencoded({extended: true}));
 // include js and css files in /public/
 server.use(express.static(path.join(__dirname, 'public')));
 
-server.use('/template.html', (req, res, next) => {
-    res.sendFile(path.join(__dirname + '/template.html'));
-});
+// routes
+server.use(configureRoutes);
+server.use(trainingRoutes);
 
-server.use('/date', (req, res, next) => {
-    console.log(req.body);
-    res.redirect('/');
-});
-
-server.use((req, res, next) => {
-    res.sendFile(path.join(__dirname + '/index.html'));
-});
+// 404 handler
+server.use(notFoundRoutes);
 
 server.listen(3000);
