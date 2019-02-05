@@ -10,6 +10,7 @@
         <link href="https://unpkg.com/gijgo@1.9.11/css/gijgo.min.css" rel="stylesheet" type="text/css" />
         
         <link rel="stylesheet" type="text/css" href="style.css">
+        <script src="index.js"></script>
     </head>
 
     <body class="bg-light">
@@ -18,19 +19,10 @@
             <br>
             <h5>Enter training date:</h5>
             <input id="datepicker" name='trainDate' type="text" width="100%" />
-            <script>
-                $('#datepicker').datepicker({
-                    uiLibrary: 'bootstrap4',
-                    size: 'small',
-                    onSelect: function(dateText, inst) {
-                        $('#datepick').submit();
-                    }
-                });
-            </script>
             <input type="submit" class="btn btn-primary" value="Submit"></input>
 
             <br><br><br>
-        <h5>Create a new template <a href="template.html">here</a></h5>
+            <h5>Create a new template <a href="template.html">here</a></h5>
         </form>
     </body>
 

@@ -3,10 +3,15 @@ const express = require('express');
 const router = express.Router();
 const path = require('path');
 
-const appDir = path.dirname(require.main.filename);
+const appDir = require('../util/path');
+
+const template = {
+
+};
 
 router.use('/template.html', (req, res, next) => {
-    res.sendFile(path.join(appDir + '/template.html'));
+    res.sendFile(path.join(appDir + '/views' + '/template.html'));
 });
 
-module.exports = router;
+exports.routes = router;
+exports.template = template;
