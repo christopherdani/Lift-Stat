@@ -11,15 +11,18 @@ var trainingDate = null;
 // POST request for training date.
 // For now, use this way of data sharing.
 router.post('/date', (req, res, next) => {
-    trainingDate = req.body;
-    console.log(trainingDate); 
-    res.redirect('/');
+    trainingDate = req.body.trainDate;
+    res.redirect('/lift');
+});
+
+router.get('/lift', (req, res, next) => {
+    res.render('lift', {date : trainingDate});
 });
 
 // use GET instead of use here, ensures that main page is this exact path.
 router.get('/', (req, res, next) => {
-    //res.sendFile(path.join(appDir + '/views' + '/index.html'));
-    res.render('index');
+    res.sendFile(path.join(appDir + '/views' + '/index.html'));
+    //res.render('index');
 });
 
 exports.routes = router;
