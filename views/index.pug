@@ -1,27 +1,21 @@
-<!DOCTYPE html>
-html(lang="en")
-    head
-        meta(charset="UTF-8")
-        meta(name="viewport", content="width=device-width, initial-scale=1.0")
-        meta(http-equiv="X-UA-Compatible", content="ie=edge")
-        title Lifting Stats
-        script(src="https://code.jquery.com/jquery-3.3.1.min.js")
-        link(rel="stylesheet", href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css", integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm", crossorigin="anonymous")
-        script(src="https://unpkg.com/gijgo@1.9.11/js/gijgo.min.js")
-        link(rel="stylesheet", href="https://unpkg.com/gijgo@1.9.11/css/gijgo.min.css")
+extends layouts/main-layout
 
-        link(rel="stylesheet", href="style.css")
-        script(src="index.js")
-    body.bg-light
-        form(action="/date", method="post")#datepick.container.text-center
-            h2 Welcome!
-            br
-            h5 Enter training date:
-            input(type="text", name="trainDate" style="width:100%")#datepicker
-            input(type="button", value="Submit").btn.btn-primary
-            br
-            br
-            br
-            h5 Create a new template
-                a(href="template.html") here
-        
+block styles
+    title Lifting Stats
+    script(src='https://unpkg.com/gijgo@1.9.11/js/gijgo.min.js' type='text/javascript')
+    link(href='https://unpkg.com/gijgo@1.9.11/css/gijgo.min.css' rel='stylesheet' type='text/css')
+    script(src='index.js')
+
+block content
+    form#datepick.container.text-center(action='/date' method='POST')
+        h2 Welcome!
+        br
+        h5 Enter training date:
+        input#datepicker(name='trainDate' type='text' width='100%')
+        input.btn.btn-primary(type='submit' value='Submit')
+        br
+        br
+        br
+        h5
+            | Create a new template 
+            a(href='template.html') here

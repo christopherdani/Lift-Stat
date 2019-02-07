@@ -8,8 +8,8 @@ server.set('view engine', 'pug');
 server.set('views', 'views');
 
 // import routes here
-const training = require('./routes/train');
-const configure = require('./routes/configure');
+const trainingRoutes = require('./routes/train');
+const configureRoutes = require('./routes/configure');
 const notFoundRoutes = require('./routes/notfound');
 
 // body parsing
@@ -19,8 +19,8 @@ server.use(bodyParser.urlencoded({extended: true}));
 server.use(express.static(path.join(__dirname, 'public')));
 
 // routes
-server.use(configure.routes);
-server.use(training.routes);
+server.use(configureRoutes);
+server.use(trainingRoutes);
 
 // 404 handler
 server.use(notFoundRoutes);

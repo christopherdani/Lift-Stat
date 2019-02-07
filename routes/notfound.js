@@ -1,13 +1,9 @@
 // 404 handler
 const express = require('express');
 const router = express.Router();
-const path = require('path');
 
-const appDir = require('../util/path');
+const errorController = require('../controllers/error')
 
-router.use('/', (req, res, next) => {
-    res.status(404);
-    res.sendFile(path.join(appDir + '/views' + '/notfound.html'));
-});
+router.use('/', errorController.get404);
 
 module.exports = router;

@@ -1,17 +1,10 @@
 // route to handle template creations
 const express = require('express');
 const router = express.Router();
-const path = require('path');
 
-const appDir = require('../util/path');
+const configurationController = require('../controllers/configuration');
 
-const template = {
 
-};
+router.use('/template.html', configurationController.getTemplate);
 
-router.use('/template.html', (req, res, next) => {
-    res.sendFile(path.join(appDir + '/views' + '/template.html'));
-});
-
-exports.routes = router;
-exports.template = template;
+module.exports = router;

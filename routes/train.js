@@ -2,28 +2,16 @@
 // ***MAIN PAGE***
 const express = require('express');
 const router = express.Router();
-const path = require('path');
 
-const appDir = require('../util/path');
+// controllers
+const trainController = require('../controllers/training');
 
-var trainingDate = null;
 
-// POST request for training date.
-// For now, use this way of data sharing.
-router.post('/date', (req, res, next) => {
-    trainingDate = req.body.trainDate;
-    res.redirect('/lift');
-});
+router.post('/date', trainController.postTrainingDate);
 
-router.get('/lift', (req, res, next) => {
-    res.render('lift', {date : trainingDate});
-});
+router.get('/lift', trainController.getLift);
 
 // use GET instead of use here, ensures that main page is this exact path.
-router.get('/', (req, res, next) => {
-    res.sendFile(path.join(appDir + '/views' + '/index.html'));
-    //res.render('index');
-});
+router.get('/', trainController.getIndex);
 
-exports.routes = router;
-exports.date = trainingDate;
+module.exports = router;

@@ -1,0 +1,27 @@
+extends layouts/main-layout
+block styles
+  title Create a new template
+  link(href='https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css' rel='stylesheet')
+  script(src='template.js')
+
+block content
+    br
+    .container.text-center.forms
+        h4 Enter your custom template here:
+        input(type='text' placeholder='Template name')
+        br
+        br
+        form(action='' method='post')
+            #InputsWrapper
+                div
+                    input#field_1(type='text' placeholder='Exercise name')
+                    input(type='number' placeholder='Set')
+                    input(type='number' placeholder='Rep')
+                    a.removeclass(href='#')  Remove
+        br
+        #AddMoreFileId
+            a#AddMoreFileBox.btn.btn-primary(href='#') Add Exercise
+            br
+            br
+        #lineBreak
+        input#submit.btn.btn-primary(type='submit' name='send' value='Submit')
