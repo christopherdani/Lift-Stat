@@ -4,7 +4,8 @@ const router = express.Router();
 
 const configurationController = require('../controllers/configuration');
 
+router.post('/createTemplate', configurationController.postTemplate);
+router.get('/template.html', configurationController.getTemplate);
 
-router.use('/template.html', configurationController.getTemplate);
 
 module.exports = router;

@@ -1,6 +1,6 @@
 // Controllers dealing with training.
 
-var trainingDate = null;
+var trainingDate = 'placeholder';
 
 exports.getIndex = (req, res, next) => {
     //res.sendFile(path.join(appDir + '/views' + '/index.html'));
@@ -11,6 +11,9 @@ exports.getIndex = (req, res, next) => {
 // For now, use this way of data sharing. Will use a DB later on.
 exports.postTrainingDate = (req, res, next) => {
     trainingDate = req.body.trainDate;
+    if (trainingDate == ''){
+        trainingDate = 'placeholder';
+    }
     res.redirect('/lift');
 };
 

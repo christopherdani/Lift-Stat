@@ -1,8 +1,10 @@
 extends layouts/main-layout
 block styles
-    title !{JSON.stringify(date).replace(/['"]+/g, '')}
-    
-
+    if date == 'placeholder'
+        title Lift
+    else
+        title !{JSON.stringify(date).replace(/['"]+/g, '')}
+        
 block content
     br
     .dropdown
