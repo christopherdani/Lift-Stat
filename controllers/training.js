@@ -18,5 +18,6 @@ exports.postTrainingDate = (req, res, next) => {
 };
 
 exports.getLift = (req, res, next) => {
+    console.log('in getLift');
     res.render('lift', {date : trainingDate});
 };

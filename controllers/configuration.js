@@ -8,6 +8,5 @@ exports.getTemplate = (req, res, next) => {
 exports.postTemplate = (req, res, next) => {
     const template = new Template(req.body.name);
     template.save();
-    console.log(req.body.name);
     res.redirect('/lift');
 }
