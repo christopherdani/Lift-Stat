@@ -5,7 +5,7 @@ const router = express.Router();
 const configurationController = require('../controllers/configuration');
 
 router.post('/createTemplate', configurationController.postTemplate);
-router.get('/template.html', configurationController.getTemplate);
+router.get('/template.html', configurationController.getTemplateView);
 
 
 module.exports = router;

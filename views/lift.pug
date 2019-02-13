@@ -12,10 +12,7 @@ block content
             | Load template
             span.caret
         ul.dropdown-menu(aria-labelledby='dropdownMenu1')
-            li
-                a.dropdown-item(href='#') Template #1
-            li
-                a.dropdown-item(href='#') Template #2
-            li
-                a.dropdown-item(href='#') Template #3
+            each n in temp
+                li
+                    a.dropdown-item(href='#')= n.name
             li.divider(role='separator')

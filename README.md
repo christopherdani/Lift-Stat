@@ -8,5 +8,8 @@ Install by running:
 Install all dependencies by running
 `npm install`
 
+Additionally:
+For now, nodemon needs to be installed globally. Since nodemon.json only works (at least as far as I can tell) when it's installed globally.
+
 ## Running
 Simply run npm start

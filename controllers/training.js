@@ -2,6 +2,8 @@
 
 var trainingDate = 'placeholder';
 
+const Template = require('../models/template');
+
 exports.getIndex = (req, res, next) => {
     //res.sendFile(path.join(appDir + '/views' + '/index.html'));
     res.render('index');
@@ -18,6 +20,11 @@ exports.postTrainingDate = (req, res, next) => {
 };
 
 exports.getLift = (req, res, next) => {
-    console.log('in getLift');
-    res.render('lift', {date : trainingDate});
+    Template.fetchAll(templates => {
+        res.render('lift', {
+            date : trainingDate,
+            temp : templates,
+            hasTemp : templates.length > 0
+        });
+    });
 };
