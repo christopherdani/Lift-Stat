@@ -23,8 +23,9 @@ const readTemplatesFromFile = cb => {
 }
 
 module.exports = class Template {
-    constructor(name) {
+    constructor(name, exerciseArray) {
         this.name = name;
+        this.exercises = exerciseArray;
     }
     save() {
         // Now, we read the files, and execute this cb function

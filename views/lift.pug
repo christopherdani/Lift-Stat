@@ -1,18 +1,21 @@
 extends layouts/main-layout
 block styles
+    link(rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.2/css/bootstrap-select.min.css')
+    script(src='https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.2/js/bootstrap-select.min.js')
+    
     if date == 'placeholder'
         title Lift
     else
         title !{JSON.stringify(date).replace(/['"]+/g, '')}
         
 block content
+
     br
-    .dropdown
-        button#dropdownMenu1.btn.btn-default.dropdown-toggle(type='button' data-toggle='dropdown' aria-haspopup='true' aria-expanded='true')
-            | Load template
-            span.caret
-        ul.dropdown-menu(aria-labelledby='dropdownMenu1')
-            each n in temp
-                li
-                    a.dropdown-item(href='#')= n.name
-            li.divider(role='separator')
+    .text-center
+        form(action='/getTemplateContents' method='get')
+            select.selectpicker(data-live-search='true' title='Choose your template...' data-width='auto')
+                each n in temp
+                    option= n.name
+            br
+            br
+            input#submit.btn.btn-primary(type='submit' value='Next')
