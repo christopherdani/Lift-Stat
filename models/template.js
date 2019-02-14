@@ -1,10 +1,12 @@
+// Represent a template, consists of a name, and an array of exercises.
+
 const fs = require('fs');
 const path = require('path');
 
 // Create the directory path where we want to save the file here.
 const filePath = path.join(path.dirname(process.mainModule.filename), 
-'data',
-'templates.json'
+    'data',
+    'templates.json'
 );
 
 // This helper function reads the contents of the templates data. Takes a cb (callback function) and runs it according to the contents of the file
