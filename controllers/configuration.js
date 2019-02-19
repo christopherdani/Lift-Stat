@@ -6,6 +6,7 @@ exports.getTemplateView = (req, res, next) => {
     res.render('template');
 };
 
+// Save the submitted template
 exports.postTemplate = (req, res, next) => {
     var exercises = [];
     var exerciseName = undefined;
@@ -26,6 +27,7 @@ exports.postTemplate = (req, res, next) => {
                 rep = req.body[key];
                 flag++;
             }
+            // Only push to the array if we have all 3 flags flipped (ensure that all 3 fields are present.)
             if (flag == 3){
                 exercises.push(new Exercise(exerciseName, set, rep));
                 flag = 0;
@@ -39,3 +41,11 @@ exports.postTemplate = (req, res, next) => {
     template.save();
     res.redirect('/lift');
 };
+
+exports.getTemplateContents = (req, res, next) => {
+    Template.fetchContent(req.body.pickedTemplate, temp => {
+        res.render('session',{
+            template : temp
+        });
+    });
+}

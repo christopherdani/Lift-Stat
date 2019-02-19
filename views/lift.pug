@@ -12,10 +12,10 @@ block content
 
     br
     .text-center
-        form(action='/getTemplateContents' method='get')
-            select.selectpicker(data-live-search='true' title='Choose your template...' data-width='auto')
+        form(action='/getTemplateContents' method='post')
+            select.selectpicker(data-live-search='true' title='Choose your template...' data-width='auto' name='pickedTemplate')
                 each n in temp
-                    option= n.name
+                    option(value=n.name)= n.name
             br
             br
             input#submit.btn.btn-primary(type='submit' value='Next')

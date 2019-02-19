@@ -1,0 +1,18 @@
+extends layouts/main-layout
+
+block styles
+
+
+block content
+    br
+    .text-center= template.name  
+    br
+    .container
+        .row.justify-content-center
+            for ex in template.exercises
+                .card-columns.center
+                    .card(style='width: 18rem;')
+                        .card-body
+                            h5.card-title= ex.exerciseName
+                            h6.card-subtitle.mb-2.text-muted= ex.set
+                            p.card-text= ex.rep
