@@ -6,6 +6,4 @@ module.exports = class Exercise {
         this.set = set;
         this.rep = rep;
     }
-
-    
 }

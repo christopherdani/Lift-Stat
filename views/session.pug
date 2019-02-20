@@ -12,7 +12,18 @@ block content
             for ex in template.exercises
                 .card-columns.center
                     .card(style='width: 18rem;')
-                        .card-body
+                        .card-header
                             h5.card-title= ex.exerciseName
-                            h6.card-subtitle.mb-2.text-muted= ex.set
-                            p.card-text= ex.rep
+                            h6.card-subtitle.mb-2.text-muted= 'Target: ' + ex.set + ' sets'
+                            h6.card-subtitle.mb-2.text-muted= 'Target: ' + ex.rep + ' reps'
+                            .progress
+                                .progress-bar(role='progressbar' style='width: 0%;' aria-valuenow='0' aria-valuemin='0' aria-valuemax=ex.set)
+                        .card-body
+                            p.card-text Weight used: 
+                                input(name= ex.exercise + 'Weight' type='number' min=1)
+                            p.card-text Current Set:
+                                input(name= ex.exercise + 'Set' type='number' value=1 min=1)
+                            p.card-text Reps: 
+                                input(name= ex.exercise + 'Rep' type='number' value=1 min=1)
+                            input#submit.btn.btn-primary(type='submit' value='Save Set')
+                            
