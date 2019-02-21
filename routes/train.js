@@ -11,6 +11,8 @@ router.post('/date', trainController.postTrainingDate);
 
 router.get('/lift', trainController.getLift);
 
+router.post('/sessionSaveSet', trainController.postSet);
+
 // use GET instead of use here, ensures that main page is this exact path.
 router.get('/', trainController.getIndex);
 

@@ -28,3 +28,10 @@ exports.getLift = (req, res, next) => {
         });
     });
 };
+
+exports.postSet = (req, res, next) => {
+    console.log(req.body.exerciseName);
+    console.log(req.body.weight);
+    console.log(req.body.set);
+    console.log(req.body.rep);
+}
