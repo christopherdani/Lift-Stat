@@ -9,9 +9,9 @@ block content
     br
     .container
         .row.justify-content-center
-            for ex in template.exercises
+            for ex, index in template.exercises
                 .card-columns.center
-                    form#ajaxSend(action='')
+                    form(id= 'ajaxSend' + index action='')
                         .card(style='width: 18rem;')
                             .card-header
                                 h5.card-title= ex.exerciseName
@@ -27,5 +27,5 @@ block content
                                     input(name= 'set' type='number' value=1 min=1)
                                 p.card-text Reps: 
                                     input(name= 'rep' type='number' value=1 min=1)
-                                input#saveSet.btn.btn-primary(type='submit' value='Save Set')
+                                input.btn.btn-primary(id='saveSet' + index type='submit' value='Save Set')
                                 
