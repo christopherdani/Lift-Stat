@@ -14,7 +14,9 @@ exports.postTemplate = (req, res, next) => {
     var rep = undefined;
     var flag = 0;
     for (var key in req.body) {
+        // Ensure that req.body has the property
         if (req.body.hasOwnProperty(key)) {
+            // test() checks if the string matches with the pattern supplied
             if (/exercise.*/.test(key) && req.body[key].length != 0){
                 exerciseName = req.body[key];
                 flag++;

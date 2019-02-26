@@ -31,12 +31,13 @@ $(document).ready(function(){
         // Get the index/id of which set we should post.
         // length 8 means saveSet/d
         // length 9 means ssaveSet/d/d
-        if (selectedSet == 8){
+        if (selectedSet.length == 8){
             i = selectedSet.slice(-1);
         }
         else {
             i = selectedSet.slice(-2);
         }
+
         e.preventDefault();
         // Now post it.
         $.ajax({

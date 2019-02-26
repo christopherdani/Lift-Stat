@@ -3,6 +3,9 @@
 var trainingDate = 'placeholder';
 
 const Template = require('../models/template');
+const ExerciseDetail = require('../models/sessionExerciseDetail');
+const Exercise = require('../models/sessionExercise');
+const Session = require('../models/session');
 
 exports.getIndex = (req, res, next) => {
     //res.sendFile(path.join(appDir + '/views' + '/index.html'));
@@ -30,8 +33,8 @@ exports.getLift = (req, res, next) => {
 };
 
 exports.postSet = (req, res, next) => {
-    console.log(req.body.exerciseName);
-    console.log(req.body.weight);
-    console.log(req.body.set);
-    console.log(req.body.rep);
+    var exerciseDetail = new ExerciseDetail(req.body.set, req.body.weight, req.body.rep);
+    var exercise = new Exercise(req.body.exerciseName, exerciseDetail);
+    exercise.save();
+
 }
