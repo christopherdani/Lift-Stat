@@ -25,7 +25,11 @@ function updateProgress(ajaxFormNumber){
     dataArray = $('#ajaxSend' + ajaxFormNumber).serializeArray();
     targetSet = (dataArray[1].value);
     setSaved = (dataArray[4].value);
-    $('#progress' + ajaxFormNumber).text('Completed Set(s): ' + setSaved);
+    progress = $('#progress' + ajaxFormNumber).text();
+    if (!progress.includes(setSaved)){
+        $('#progress' + ajaxFormNumber).text(progress + ' ' + setSaved);
+    }
+    
 }
 
 $(document).ready(function(){

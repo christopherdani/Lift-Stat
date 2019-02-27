@@ -45,6 +45,8 @@ exports.postTemplate = (req, res, next) => {
 };
 
 exports.getTemplateContents = (req, res, next) => {
+    console.log('lifting at: ' + req.body.liftDate);
+    console.log('picked template: ' + req.body.pickedTemplate);
     Template.fetchContent(req.body.pickedTemplate, temp => {
         res.render('session',{
             template : temp

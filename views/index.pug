@@ -8,10 +8,13 @@ block styles
 
 block content
     form#datepick.container.text-center(action='/date' method='POST')
-        h2 Welcome!
+        br
+        h2 Lift-Stat
         br
         h5 Enter training date:
+        p.text-muted Leaving this blank will default to today's date.
         input#datepicker(name='trainDate' type='text' width='100%')
+        br
         input.btn.btn-primary(type='submit' value='Submit')
         br
         br

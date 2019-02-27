@@ -19,7 +19,6 @@ const readSessionExerciseFromFile = cb => {
     fs.readFile(filePath, (err, fileContent) => {
         // if the file is empty, we pass the cb with an empty array and execute it.
         if (err) {
-
             return cb([]);
         }
         // else, parse the file's contents

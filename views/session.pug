@@ -5,7 +5,7 @@ block styles
 
 block content
     br
-    .text-center= template.name
+    h2.text-center= template.name
     br
     .container
         .row.justify-content-center
@@ -14,10 +14,10 @@ block content
                     form(id= 'ajaxSend' + index action='')
                         .card(style='width: 18rem;')
                             .card-header
-                                h5.card-title= ex.exerciseName
+                                h5.card-title.font-weight-bold= ex.exerciseName
                                 h6.card-subtitle.mb-2.text-muted= 'Target: ' + ex.set + ' sets'
                                 h6.card-subtitle.mb-2.text-muted= 'Target: ' + ex.rep + ' reps'
-                                h6.card-subtitle.mb-2.text-muted(id= 'progress' + index) Completed Set(s): 0
+                                h6.card-subtitle.mb-2.font-weight-bold(id= 'progress' + index) Completed Set(s): 
                             .card-body
                                 input(name='exerciseName' type='hidden' value= ex.exerciseName)
                                 input(name='targetSet' type='hidden' value= ex.set)
@@ -29,4 +29,15 @@ block content
                                 p.card-text Reps: 
                                     input(name= 'rep' type='number' value=1 min=1)
                                 input.btn.btn-primary(id='saveSet' + index type='submit' value='Save Set')
+    
+            br
+            br
+            form(id='saveSession' action='/saveSession')
+                input.btn.btn-primary(id='saveSession' type='submit' value='Save Session')
+            br
+
+    br
+    br
+
+            
                                 

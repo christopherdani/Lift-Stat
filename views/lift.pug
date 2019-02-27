@@ -13,9 +13,10 @@ block content
     br
     .text-center
         form(action='/getTemplateContents' method='post')
-            select.selectpicker(data-live-search='true' title='Choose your template...' data-width='auto' name='pickedTemplate')
+            select.selectpicker(data-live-search='true' title='Choose your template...' data-width='auto' name='pickedTemplate' required)
                 each n in temp
                     option(value=n.name)= n.name
             br
             br
+            input(name='liftDate' type='hidden' value= JSON.stringify(date).replace(/['"]+/g, ''))
             input#submit.btn.btn-primary(type='submit' value='Next')

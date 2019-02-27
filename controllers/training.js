@@ -17,7 +17,19 @@ exports.getIndex = (req, res, next) => {
 exports.postTrainingDate = (req, res, next) => {
     trainingDate = req.body.trainDate;
     if (trainingDate == ''){
-        trainingDate = 'placeholder';
+        var today = new Date();
+        var dd = today.getDate();
+        var mm = today.getMonth() + 1;
+        var yyyy = today.getFullYear();
+        if (dd < 10) {
+            dd = '0' + dd;
+        }
+          
+        if (mm < 10) {
+            mm = '0' + mm;
+        }  
+        today = mm + '/' + dd + '/' + yyyy;
+        trainingDate = today;
     }
     res.redirect('/lift');
 };
@@ -39,3 +51,6 @@ exports.postSet = (req, res, next) => {
 
 }
 
+exports.postSession = (req, res, next) => {
+    console.log('saving current session now...');
+}
