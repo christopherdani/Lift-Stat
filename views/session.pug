@@ -5,7 +5,7 @@ block styles
 
 block content
     br
-    .text-center= template.name  
+    .text-center= template.name
     br
     .container
         .row.justify-content-center
@@ -17,10 +17,11 @@ block content
                                 h5.card-title= ex.exerciseName
                                 h6.card-subtitle.mb-2.text-muted= 'Target: ' + ex.set + ' sets'
                                 h6.card-subtitle.mb-2.text-muted= 'Target: ' + ex.rep + ' reps'
-                                .progress
-                                    .progress-bar(role='progressbar' style='width: 0%;' aria-valuenow='0' aria-valuemin='0' aria-valuemax=ex.set)
+                                h6.card-subtitle.mb-2.text-muted(id= 'progress' + index) Completed Set(s): 0
                             .card-body
                                 input(name='exerciseName' type='hidden' value= ex.exerciseName)
+                                input(name='targetSet' type='hidden' value= ex.set)
+                                input(name='targetRep' type='hidden' value= ex.rep)
                                 p.card-text Weight used: 
                                     input(name= 'weight' type='number' min=1)
                                 p.card-text Current Set:

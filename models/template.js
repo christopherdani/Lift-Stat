@@ -55,8 +55,6 @@ module.exports = class Template {
             // else, get the template with the correct name, and run cb with it.
             var templateArray = JSON.parse(fileContent);
             for (var key in templateArray){
-                //console.log(name);
-                //console.log(templateArray[key].name);
                 if (templateArray[key].name == name){
                     
                     return cb(templateArray[key]);

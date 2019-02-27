@@ -18,9 +18,14 @@ jQuery.expr[':'].regex = function(elem, index, match) {
     return regex.test(jQuery(elem)[attr.method](attr.property));
 };
 
-// Update the progress bar.
-function updateProgress(exerciseName){
+// Update the progress
+// Currently assuming that user will use this properly.
+function updateProgress(ajaxFormNumber){
     //TODO next time.
+    dataArray = $('#ajaxSend' + ajaxFormNumber).serializeArray();
+    targetSet = (dataArray[1].value);
+    setSaved = (dataArray[4].value);
+    $('#progress' + ajaxFormNumber).text('Completed Set(s): ' + setSaved);
 }
 
 $(document).ready(function(){
@@ -30,14 +35,13 @@ $(document).ready(function(){
         var i = -1;
         // Get the index/id of which set we should post.
         // length 8 means saveSet/d
-        // length 9 means ssaveSet/d/d
+        // length 9 means saveSet/d/d
         if (selectedSet.length == 8){
             i = selectedSet.slice(-1);
         }
         else {
             i = selectedSet.slice(-2);
         }
-
         e.preventDefault();
         // Now post it.
         $.ajax({
@@ -47,8 +51,9 @@ $(document).ready(function(){
             dataType: 'json',
             success: function(){
                 // For some reason, this is not getting called. Not really sure why...
-                console.log('test');
+                console.log('success');
             }
         });
+        updateProgress(i);
     });
 });
