@@ -13,7 +13,7 @@ router.get('/lift', trainController.getLift);
 
 router.post('/sessionSaveSet', trainController.postSet);
 
-router.post('/saveSession', trainController.postSession);
+router.use('/saveSession', trainController.postSession);
 
 // use GET instead of use here, ensures that main page is this exact path.
 router.get('/', trainController.getIndex);

@@ -5,7 +5,7 @@
 const fs = require('fs');
 const path = require('path');
 const utility = require('../util/utlility')
-
+ 
 // Create the directory path where we want to save the file here.
 const filePath = path.join(path.dirname(process.mainModule.filename), 
     'data',
@@ -35,29 +35,37 @@ module.exports = class sessionExercise{
     }
 
     // cb to update the progress in the exercise
-    save(){
+    // Function arguments to check if we need to edit a specific set, or add a new one.
+    save(exerciseName, exerciseDetails){
         // Now, we read the files, and execute this cb function
         readSessionExerciseFromFile(temp1 => {
             // Have to use => instead of function(){}. we prevent hoisting here, so "this" refers to the correct this.
-            // Append the new template to array here
-            //console.log(utility.contains(temp1, 'setNumber', this.exerciseDetail.setNumber));
 
-            temp1.push(this);
+            // Check if the set has been saved yet, if so, then edit the set with the new exerciseDetail
+            var flag = true;
+            var arr = Object.entries(temp1);
+            for (var i = 0; i < arr.length; i++){
+                if (arr[i][1].exerciseName == exerciseName && arr[i][1].exerciseDetail.setNumber == exerciseDetails.setNumber){
+                    arr[i][1].exerciseDetail = exerciseDetails;
+                    flag = false;
+                    break;                    
+                }
+            }
+            if (flag){
+                temp1.push(this);
+            }
             
             
-            console.log(temp1);
+            
+            //console.log(temp1);
             // Rewrite the file here.
             fs.writeFile(filePath, JSON.stringify(temp1), (err) => {
                 if (err){
-                    console.log(err);
+                    console.log('Encountered error while saving set: ' + err);
                 }
 
             });
         });
-    }
-
-    editSet(exerciseDetail){
-        this.exerciseDetail = exerciseDetail;
     }
 
     static fetchContent(cb) {

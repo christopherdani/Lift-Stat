@@ -42,7 +42,7 @@ exports.postTemplate = (req, res, next) => {
     const template = new Template(req.body.name, exercises);
     template.save();
     res.redirect('/lift');
-};
+}
 
 exports.getTemplateContents = (req, res, next) => {
     console.log('lifting at: ' + req.body.liftDate);

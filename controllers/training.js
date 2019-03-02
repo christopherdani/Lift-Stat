@@ -47,10 +47,12 @@ exports.getLift = (req, res, next) => {
 exports.postSet = (req, res, next) => {
     var exerciseDetail = new ExerciseDetail(req.body.set, req.body.weight, req.body.rep);
     var exercise = new Exercise(req.body.exerciseName, exerciseDetail);
-    exercise.save();
+    exercise.save(req.body.exerciseName, exerciseDetail);
 
 }
 
 exports.postSession = (req, res, next) => {
     console.log('saving current session now...');
+
+    res.redirect('/');
 }
