@@ -9,17 +9,21 @@ const fs = require('fs');
 const path = require('path');
 const utility = require('../util/utlility')
  
-// Create the directory path where we want to save the file here.
-const filePath = path.join(path.dirname(process.mainModule.filename), 
+// File path to save a session
+const sessionFilePath = path.join(path.dirname(process.mainModule.filename), 
     'data',
     'sessions.json'
 );
 
-// This helper function reads the contents of the templates data. Takes a cb (callback function) and runs it according to the contents of the file
-// If empty, run it with an empty array.
-// Otherwise, parse the contents into an array (from JSON format) and pass it into the cb
+// File path to session details.
+const duringSessionFilePath = path.join(path.dirname(process.mainModule.filename), 
+    'data',
+    'duringSession.json'
+);
+
+
 const readSessionExerciseFromFile = cb => {
-    fs.readFile(filePath, (err, fileContent) => {
+    fs.readFile(duringSessionFilePath, (err, fileContent) => {
         // if the file is empty, we pass the cb with an empty array and execute it.
         if (err) {
             return cb([]);
@@ -27,9 +31,18 @@ const readSessionExerciseFromFile = cb => {
         // else, parse the file's contents
         cb(JSON.parse(fileContent));
     });
-
 }
 
+const readSessionFromFile = cb => {
+    fs.readFile(sessionFilePath, (err, fileContent) => {
+        // if the file is empty, we pass the cb with an empty array and execute it.
+        if (err) {
+            return cb([]);
+        }
+        // else, parse the file's contents
+        cb(JSON.parse(fileContent));
+    });
+}
 module.exports = class Session {
     constructor(date, sessionExercises){
         this.date = date;
@@ -37,16 +50,48 @@ module.exports = class Session {
         this.sessionExercises = sessionExercises;
     }
 
-    save(){
+    static save(date){
         // Now, we read the files, and execute this cb function
         readSessionExerciseFromFile(temp1 => {
+            // If the date is placeholder, that means user has skipped the date entry part, replace that with today's date
+            if (date == 'placeholder'){
+                var today = new Date();
+                var dd = today.getDate();
+                var mm = today.getMonth() + 1;
+                var yyyy = today.getFullYear();
+                if (dd < 10) {
+                    dd = '0' + dd;
+                }
+                    
+                if (mm < 10) {
+                    mm = '0' + mm;
+                }  
+                today = mm + '/' + dd + '/' + yyyy;
+                date = today;
+            }
+
             // now we want to create a new session object here, and write it to the session.json file
             // also, we want to delete the duringSession.json file.
-            fs.writeFile(filePath, JSON.stringify(temp1), (err) => {
-                if (err){
-                    console.log('Encountered error while saving session: ' + err);
-                }
-            });
+            var exercises = [];
+            var arr = Object.entries(temp1);
+            for (var i = 0; i < arr.length; i++){
+                exercises.push(arr[i][1]);
+            }
+            var session = new Session(date, exercises); 
+
+            readSessionFromFile(temp2 => {
+                temp2.push(session);
+                fs.writeFile(sessionFilePath, JSON.stringify(temp2), (err) => {
+                    if (err){
+                        console.log('Encountered error while saving session: ' + err);
+                        return;
+                    }
+                    fs.unlink(duringSessionFilePath, rem => {
+                        console.log('Deleted duringSession.json');
+                    })
+                });
+            })
+            
         });
     }
 

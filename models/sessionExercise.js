@@ -6,7 +6,7 @@ const fs = require('fs');
 const path = require('path');
 const utility = require('../util/utlility')
  
-// Create the directory path where we want to save the file here.
+// Path to where we should save.
 const filePath = path.join(path.dirname(process.mainModule.filename), 
     'data',
     'duringSession.json'
@@ -53,10 +53,7 @@ module.exports = class sessionExercise{
             }
             if (flag){
                 temp1.push(this);
-            }
-            
-            
-            
+            }           
             //console.log(temp1);
             // Rewrite the file here.
             fs.writeFile(filePath, JSON.stringify(temp1), (err) => {

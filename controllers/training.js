@@ -2,6 +2,7 @@
 
 var trainingDate = 'placeholder';
 
+
 const Template = require('../models/template');
 const ExerciseDetail = require('../models/sessionExerciseDetail');
 const Exercise = require('../models/sessionExercise');
@@ -53,6 +54,6 @@ exports.postSet = (req, res, next) => {
 
 exports.postSession = (req, res, next) => {
     console.log('saving current session now...');
-
+    Session.save(trainingDate);
     res.redirect('/');
 }
