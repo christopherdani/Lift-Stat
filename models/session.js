@@ -26,6 +26,7 @@ const readSessionExerciseFromFile = cb => {
     fs.readFile(duringSessionFilePath, (err, fileContent) => {
         // if the file is empty, we pass the cb with an empty array and execute it.
         if (err) {
+            console.log('Error while reading duringSessionFilePath in session.js, using empty array...');
             return cb([]);
         }
         // else, parse the file's contents
@@ -37,6 +38,7 @@ const readSessionFromFile = cb => {
     fs.readFile(sessionFilePath, (err, fileContent) => {
         // if the file is empty, we pass the cb with an empty array and execute it.
         if (err) {
+            console.log('Error while reading sessionFilePath in session.js, using empty array...');
             return cb([]);
         }
         // else, parse the file's contents
@@ -55,6 +57,7 @@ module.exports = class Session {
         readSessionExerciseFromFile(temp1 => {
             // If the date is placeholder, that means user has skipped the date entry part, replace that with today's date
             if (date == 'placeholder'){
+                console.log('User skipped home page, using today\'s date as default');
                 var today = new Date();
                 var dd = today.getDate();
                 var mm = today.getMonth() + 1;

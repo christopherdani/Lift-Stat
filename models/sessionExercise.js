@@ -19,6 +19,7 @@ const readSessionExerciseFromFile = cb => {
     fs.readFile(filePath, (err, fileContent) => {
         // if the file is empty, we pass the cb with an empty array and execute it.
         if (err) {
+            console.log('Error while reading duringSession.json, using empty array...')
             return cb([]);
         }
         // else, parse the file's contents
@@ -65,6 +66,7 @@ module.exports = class sessionExercise{
         });
     }
 
+    // Fetch the content of a given 
     static fetchContent(cb) {
         fs.readFile(filePath, (err, fileContent) => {
             // if the file is empty, we pass the cb with an empty array and execute it.
@@ -82,11 +84,4 @@ module.exports = class sessionExercise{
         });
     }
 
-    static fetchAll(cb) {
-        readTemplatesFromFile(cb);
-    }
-    
-    removeSet(setNumber){
-        
-    }
 }
