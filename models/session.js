@@ -99,7 +99,7 @@ module.exports = class Session {
     }
 
     static fetchAll(cb) {
-        readTemplatesFromFile(cb);
+        readSessionFromFile(cb);
     }
 
 }

@@ -19,13 +19,25 @@ const readSessionExerciseFromFile = cb => {
     fs.readFile(filePath, (err, fileContent) => {
         // if the file is empty, we pass the cb with an empty array and execute it.
         if (err) {
-            console.log('Error while reading duringSession.json, using empty array...')
+            console.log('Error while reading duringSession.json, creating an empty file...');
             return cb([]);
         }
         // else, parse the file's contents
         cb(JSON.parse(fileContent));
     });
 
+}
+
+const validateData = (exerciseName, exerciseDetails, cb) => {
+    if (exerciseName == ''){
+        return cb('exerciseName is undefined! This shouldn\'t happen');
+    }
+    else if (exerciseDetails.weightUsed == ''){
+        return cb('You didn\'t enter a weight!');
+    }
+    else {
+        return cb('Set data is good, saving now...');
+    }
 }
 
 module.exports = class sessionExercise{
@@ -38,10 +50,12 @@ module.exports = class sessionExercise{
     // cb to update the progress in the exercise
     // Function arguments to check if we need to edit a specific set, or add a new one.
     save(exerciseName, exerciseDetails){
+        validateData(exerciseName, exerciseDetails, (result) => {
+            console.log(result);
+        })
         // Now, we read the files, and execute this cb function
+        // Have to use => instead of function(){}. we prevent hoisting here, so "this" refers to the correct this.
         readSessionExerciseFromFile(temp1 => {
-            // Have to use => instead of function(){}. we prevent hoisting here, so "this" refers to the correct this.
-
             // Check if the set has been saved yet, if so, then edit the set with the new exerciseDetail
             var flag = true;
             var arr = Object.entries(temp1);
