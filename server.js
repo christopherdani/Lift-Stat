@@ -10,6 +10,7 @@ server.set('views', 'views');
 // import routes here
 const trainingRoutes = require('./routes/train');
 const configureRoutes = require('./routes/configure');
+const viewDataRoutes = require('./routes/data');
 const notFoundRoutes = require('./routes/notfound');
 
 // body parsing
@@ -21,6 +22,7 @@ server.use(express.static(path.join(__dirname, 'public')));
 // routes
 server.use(configureRoutes);
 server.use(trainingRoutes);
+server.use(viewDataRoutes);
 
 // 404 handler
 server.use(notFoundRoutes);

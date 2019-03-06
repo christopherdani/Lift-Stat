@@ -89,9 +89,12 @@ module.exports = class Session {
                         console.log('Encountered error while saving session: ' + err);
                         return;
                     }
+                    /*
+                    // I should delete this only after i show the session summary page.
                     fs.unlink(duringSessionFilePath, rem => {
                         console.log('Deleted duringSession.json');
-                    })
+                    });
+                    */
                 });
             })
             

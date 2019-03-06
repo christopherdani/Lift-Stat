@@ -56,5 +56,5 @@ exports.postSession = (req, res, next) => {
     console.log('Saving current session now...');
     Session.save(trainingDate);
     // Need to change later, maybe to a summary of today's session?
-    res.redirect('/');
+    res.redirect('/sessionSummary');
 }

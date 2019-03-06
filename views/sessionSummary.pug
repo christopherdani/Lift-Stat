@@ -3,3 +3,16 @@ extends layouts/main-layout
 block styles
 
 block content
+    #receipt.container
+
+    .row.justify-content-center
+        br
+        each n in summary
+            .card-columns.center
+                .card(style='width: 18rem;')
+                    .card-header
+                        h5.card-title.font-weight-bold= n.exerciseName
+                    .card-body
+                        h6.card-text= 'Set: ' + n.exerciseDetail.weightUsed
+                        h6.card-text= 'Set: ' + n.exerciseDetail.setNumber
+                        h6.card-text= 'Set: ' + n.exerciseDetail.repsPerformed
