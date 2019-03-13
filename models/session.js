@@ -7,7 +7,7 @@
 
 const fs = require('fs');
 const path = require('path');
-const utility = require('../util/utlility')
+const Utility = require('../util/utlility')
  
 // File path to save a session
 const sessionFilePath = path.join(path.dirname(process.mainModule.filename), 
@@ -23,7 +23,7 @@ const duringSessionFilePath = path.join(path.dirname(process.mainModule.filename
 
 
 const readSessionExerciseFromFile = cb => {
-    fs.readFile(duringSessionFilePath, (err, fileContent) => {
+    fs.readFile(Utility.duringSessionFilePath, (err, fileContent) => {
         // if the file is empty, we pass the cb with an empty array and execute it.
         if (err) {
             console.log('Error while reading duringSessionFilePath in session.js, using empty array...');
@@ -35,7 +35,7 @@ const readSessionExerciseFromFile = cb => {
 }
 
 const readSessionFromFile = cb => {
-    fs.readFile(sessionFilePath, (err, fileContent) => {
+    fs.readFile(Utility.sessionFilePath, (err, fileContent) => {
         // if the file is empty, we pass the cb with an empty array and execute it.
         if (err) {
             console.log('Error while reading sessionFilePath in session.js, using empty array...');
@@ -45,6 +45,7 @@ const readSessionFromFile = cb => {
         cb(JSON.parse(fileContent));
     });
 }
+
 module.exports = class Session {
     constructor(date, sessionExercises){
         this.date = date;
@@ -84,17 +85,11 @@ module.exports = class Session {
 
             readSessionFromFile(temp2 => {
                 temp2.push(session);
-                fs.writeFile(sessionFilePath, JSON.stringify(temp2), (err) => {
+                fs.writeFile(Utility.sessionFilePath, JSON.stringify(temp2), (err) => {
                     if (err){
                         console.log('Encountered error while saving session: ' + err);
                         return;
                     }
-                    /*
-                    // I should delete this only after i show the session summary page.
-                    fs.unlink(duringSessionFilePath, rem => {
-                        console.log('Deleted duringSession.json');
-                    });
-                    */
                 });
             })
             

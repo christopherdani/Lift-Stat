@@ -13,6 +13,7 @@ exports.duringSessionFilePath = path.join(path.dirname(process.mainModule.filena
     'duringSession.json'
 );
 
+// Open a file and parse it, create it if it doesn not exist.
 exports.readFile = (filePath, cb) => {
     fs.readFile(filePath, (err, fileContent) => {
         // if the file is empty, we pass the cb with an empty array and execute it.
@@ -31,10 +32,4 @@ exports.deleteFile = (filePath) => {
     });
 }
 
-// Need to work on this so that it can check nested values...
-exports.contains = (arr, key, val) => {
-    for (var i = 0; i < arr.length; i++) {
-        if(arr[i][key] === val) return true;
-    }
-    return false;
-}
+
