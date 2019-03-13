@@ -5,5 +5,6 @@ const router = express.Router();
 const viewDataController = require('../controllers/viewData');
 
 router.get('/sessionSummary', viewDataController.getSummary);
+router.get('/confirmSession', viewDataController.confirmSession);
 
 module.exports = router;

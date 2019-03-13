@@ -3,9 +3,12 @@ extends layouts/main-layout
 block styles
 
 block content
-    #receipt.container
 
+    br
+    br
     .row.justify-content-center
+        form(id='confirmSession' action='/confirmSession')
+            input.btn.btn-primary(id='confirmSession' type='submit' value='Confirm Session')
         br
         each n in summary
             .card-columns.center
