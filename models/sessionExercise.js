@@ -19,7 +19,7 @@ const readSessionExerciseFromFile = cb => {
     fs.readFile(filePath, (err, fileContent) => {
         // if the file is empty, we pass the cb with an empty array and execute it.
         if (err) {
-            console.log('Error while reading duringSession.json, creating an empty file...');
+            console.log('File duringSession.json doesn\'t exist, creating an empty file...');
             return cb([]);
         }
         // else, parse the file's contents

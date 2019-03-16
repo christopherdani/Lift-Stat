@@ -13,12 +13,18 @@ exports.duringSessionFilePath = path.join(path.dirname(process.mainModule.filena
     'duringSession.json'
 );
 
+// File path to user's pr
+exports.prFilePath = path.join(path.dirname(process.mainModule.filename), 
+    'data',
+    'pr.json'
+);
+
 // Open a file and parse it, create it if it doesn not exist.
 exports.readFile = (filePath, cb) => {
     fs.readFile(filePath, (err, fileContent) => {
         // if the file is empty, we pass the cb with an empty array and execute it.
         if (err) {
-            console.log('Error while reading' + filePath + ', using empty array...');
+            console.log('Error while reading' + filePath + ', creating an empty file...');
             return cb([]);
         }
         // else, parse the file's contents
@@ -32,4 +38,31 @@ exports.deleteFile = (filePath) => {
     });
 }
 
+// content = Stringified data to write
+exports.writeToFile = (filePath, content) => {
+    fs.writeFile(filePath, content, (err) => {
+        if (err){
+            console.log('Encountered error while writing to file: ' + err);
+            return;
+        }
+        console.log('Successfully written ' + content + ' to ' + filePath);
+        return; 
+    });
+}
+
+exports.todayDate = () => {
+    var today = new Date();
+    var dd = today.getDate();
+    var mm = today.getMonth() + 1;
+    var yyyy = today.getFullYear();
+    if (dd < 10) {
+        dd = '0' + dd;
+    }
+        
+    if (mm < 10) {
+        mm = '0' + mm;
+    }  
+    today = mm + '/' + dd + '/' + yyyy;
+    return today;
+}
 

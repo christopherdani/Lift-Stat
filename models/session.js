@@ -6,21 +6,7 @@
 */
 
 const fs = require('fs');
-const path = require('path');
 const Utility = require('../util/utlility')
- 
-// File path to save a session
-const sessionFilePath = path.join(path.dirname(process.mainModule.filename), 
-    'data',
-    'sessions.json'
-);
-
-// File path to session details.
-const duringSessionFilePath = path.join(path.dirname(process.mainModule.filename), 
-    'data',
-    'duringSession.json'
-);
-
 
 const readSessionExerciseFromFile = cb => {
     fs.readFile(Utility.duringSessionFilePath, (err, fileContent) => {
@@ -59,23 +45,10 @@ module.exports = class Session {
             // If the date is placeholder, that means user has skipped the date entry part, replace that with today's date
             if (date == 'placeholder'){
                 console.log('User skipped home page, using today\'s date as default');
-                var today = new Date();
-                var dd = today.getDate();
-                var mm = today.getMonth() + 1;
-                var yyyy = today.getFullYear();
-                if (dd < 10) {
-                    dd = '0' + dd;
-                }
-                    
-                if (mm < 10) {
-                    mm = '0' + mm;
-                }  
-                today = mm + '/' + dd + '/' + yyyy;
-                date = today;
+                date = Utility.todayDate();
             }
 
             // now we want to create a new session object here, and write it to the session.json file
-            // also, we want to delete the duringSession.json file.
             var exercises = [];
             var arr = Object.entries(temp1);
             for (var i = 0; i < arr.length; i++){
