@@ -13,7 +13,8 @@ exports.getSummary = (req, res, next) => {
 exports.confirmSession = (req, res, next) => {
     console.log('Session confirmed, deleting duringSession.json');
     Utility.deleteFile(Utility.duringSessionFilePath);
-    var test = new Pr('ayy', '2', '3', '4');
-    test.track();
+    //var test = new Pr('ayy', '5', '200', '5');
+    //test.track();
+    Pr.update('ayy', '5', '400', '5');
     res.redirect('/');
 }

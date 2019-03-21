@@ -1,3 +1,9 @@
 {
-    "ignore": ["templates.json", "duringSession.json", "sessions.json"]
+    "ignore": 
+        [
+            "templates.json",
+            "duringSession.json",
+            "sessions.json",
+            "pr.json"
+        ]
 }

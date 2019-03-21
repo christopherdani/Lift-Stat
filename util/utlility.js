@@ -38,15 +38,36 @@ exports.deleteFile = (filePath) => {
     });
 }
 
-// content = Stringified data to write
+// Appends to a file
+// content = data to write
 exports.writeToFile = (filePath, content) => {
-    fs.writeFile(filePath, content, (err) => {
-        if (err){
-            console.log('Encountered error while writing to file: ' + err);
-            return;
-        }
-        console.log('Successfully written ' + content + ' to ' + filePath);
-        return; 
+    exports.readFile(filePath, arr => {
+        arr.push(content);
+        fs.writeFile(filePath, JSON.stringify(arr), (err) => {
+            if (err){
+                console.log('Encountered error while writing to file: ' + err);
+                return;
+            }
+            console.log('Successfully written ' + content + ' to ' + filePath);
+            return; 
+        });
+    });
+}
+
+// Rewrites a file
+exports.rewriteToFile = (filePath, content) => {
+    exports.readFile(filePath, arr => {
+        // Need this so an object is neatly wrapped in 1 entry instead of 2 if I just write content.
+        //var newContent = [];
+        //newContent.push(content);
+        fs.writeFile(filePath, JSON.stringify(content), (err) => {
+            if (err){
+                console.log('Encountered error while writing to file: ' + err);
+                return;
+            }
+            console.log('Successfully written ' + JSON.stringify(content) + ' to ' + filePath);
+            return; 
+        });
     });
 }
 
