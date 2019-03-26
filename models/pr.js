@@ -30,7 +30,7 @@ module.exports = class userStats{
                     break;
                 }
             }
-            // Not sure why this is nesting itself everytime I update...
+            // Not sure why this is nesting itself everytime I update... To figure out later...
             console.log(arr);
             if (flag){
                 data.push(arr);

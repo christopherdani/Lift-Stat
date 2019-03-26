@@ -1,0 +1,5 @@
+# DB config
+
+[connect]
+# Make sure this url is not surrounded in quotes, just paste the raw link in.
+url =

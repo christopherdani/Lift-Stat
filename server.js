@@ -13,6 +13,9 @@ const configureRoutes = require('./routes/configure');
 const viewDataRoutes = require('./routes/data');
 const notFoundRoutes = require('./routes/notfound');
 
+// db stuff
+const mongoConnect = require('./util/database');
+
 // body parsing
 server.use(bodyParser.urlencoded({extended: true}));
 
@@ -27,4 +30,9 @@ server.use(viewDataRoutes);
 // 404 handler
 server.use(notFoundRoutes);
 
-server.listen(3000);
+mongoConnect((client) => {
+    console.log('Listening at port 3000');
+    console.log(client);
+    server.listen(3000);
+})
+
