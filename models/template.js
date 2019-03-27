@@ -2,6 +2,7 @@
 
 const fs = require('fs');
 const path = require('path');
+const getDb = require('../util/database').getDb;
 
 // Create the directory path where we want to save the file here.
 const filePath = path.join(path.dirname(process.mainModule.filename), 
@@ -44,7 +45,19 @@ module.exports = class Template {
                 };
             });
         });
-    };
+
+        // DB stuff here. will remove file stuff later when I know this works.
+        const db = getDb();
+        db.collection('templates')
+            .insertOne(this)
+            .then(result => {
+                console.log('successfully inserted: ' + this.name);
+                //console.log(result);
+            })
+            .catch(err => {
+                console.log(err);
+            });
+    }
 
     static fetchContent(name, cb) {
         fs.readFile(filePath, (err, fileContent) => {
@@ -66,6 +79,20 @@ module.exports = class Template {
     
     // Takes a callback function (cb). This function should render the templates that are read and returned to it from the files.
     static fetchAll(cb) {
+        const db = getDb();
         readTemplatesFromFile(cb);
+        // pagination later.
+        return db.collection('templates')
+            .find()
+            .toArray()
+            .then(templates => {
+                console.log('Successfully fetched templates.');
+                //console.log(templates);
+                return templates;
+            })
+            .catch(err => {
+                console.log(err);
+            })
+            ;
     };
 };

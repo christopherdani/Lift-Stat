@@ -17,9 +17,11 @@ Webapp to log your routine and visualize it.
    
    Add your mongodb cluster connection url to the connect.url property and remove the .template extension.
 
-Additional Info:
+3) Additional Info:
 
-For now, nodemon needs to be installed globally. Since nodemon.json only works (at least as far as I can tell) when it's installed globally.
+   For now, nodemon needs to be installed globally. Since nodemon.json only works (at least as far as I can tell) when it's installed globally.
+
+   `npm install nodemon --global`
 
 
 ## Running
